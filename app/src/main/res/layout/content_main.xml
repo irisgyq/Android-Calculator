@@ -23,7 +23,6 @@
         android:layout_marginRight="10dp"
         android:hint="@string/defaultInput" />
 
-
     </LinearLayout>
 
     <LinearLayout
@@ -71,13 +70,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/mod"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
 
         <Button android:id="@+id/div"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/div"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
+        <Button android:id="@+id/pow"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/pow"
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
@@ -121,6 +129,14 @@
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
+        <Button android:id="@+id/sqrt"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/sqrt"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -158,6 +174,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/sub"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
+        <Button android:id="@+id/log10"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/log10"
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
@@ -201,6 +225,14 @@
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
+        <Button android:id="@+id/log2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/log2"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -241,9 +273,15 @@
             android:textSize="20sp"
             android:onClick="calculate"/>
 
+        <Button android:id="@+id/ln"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/ln"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
     </LinearLayout>
-
-
 
 </LinearLayout>
 

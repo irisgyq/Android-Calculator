@@ -9,6 +9,11 @@
     <string name="mul">*</string>
     <string name="sub">-</string>
     <string name="add">+</string>
+    <string name="pow">^</string>
+    <string name="sqrt">√</string>
+    <string name="log10">lg</string>
+    <string name="log2">log</string>
+    <string name="ln">ln</string>
     <string name="equals">=</string>
     <string name="seven">7</string>
     <string name="eight">8</string>

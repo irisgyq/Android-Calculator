@@ -48,7 +48,8 @@ public class InputProcess {
                                 j = s.length();
                             }
                         }
-                    } else if (ic == Operator.ADD.getValue() || ic == Operator.SUB.getValue() || ic == Operator.MUL.getValue() || ic == Operator.DIV.getValue() || ic == Operator.RIGHT_BRACE.getValue()) {
+                    } else if (ic == Operator.ADD.getValue() || ic == Operator.SUB.getValue() || ic == Operator.MUL.getValue() || ic == Operator.DIV.getValue() || ic == Operator.RIGHT_BRACE.getValue() || ic == Operator.MOD.getValue() || ic == Operator.LG.getValue() || ic==Operator.LOG.getValue() || ic==Operator.LN.getValue()
+                            || ic == Operator.POW.getValue() || ic == Operator.SQRT.getValue()) {
                         arr.add(new Token(ic,"Operator"));
                     } else {
                         arr.add(null);
@@ -96,7 +97,7 @@ public class InputProcess {
             int i0 = t0.getValue();
             Token tn = ac.get(ac.size() - 1);
             int in = tn.getValue();
-            if (!((t0.getType().equals("Number") || (t0.getType().equals("Operator") && (i0 == Operator.LEFT_BRACE.getValue() || i0 == Operator.SUB.getValue())))) || (!(tn.getType().equals("Number") || (tn.getType().equals("Operator") && in == Operator.RIGHT_BRACE.getValue())))) {
+            if (!((t0.getType().equals("Number") || (t0.getType().equals("Operator") && (i0 == Operator.LEFT_BRACE.getValue() || i0 == Operator.SUB.getValue() || i0 == Operator.SQRT.getValue())))) || (!(tn.getType().equals("Number") || (tn.getType().equals("Operator") && in == Operator.RIGHT_BRACE.getValue())))) {
                 Constants.resS="The position of operators is wrong.";
                 return false;
             }
@@ -105,18 +106,22 @@ public class InputProcess {
                 int ii = ni.getValue();
                 Token nii = ac.get(i + 1);
                 int iii = nii.getValue();
-                if ((ni.getType().equals("Operator") && (ii == Operator.ADD.getValue() || ii == Operator.SUB.getValue() || ii == Operator.MUL.getValue() || ii == Operator.DIV.getValue())) &&
-                        (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.SUB.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue()))) {
+                if ((ni.getType().equals("Operator") && (ii == Operator.ADD.getValue() || ii == Operator.SUB.getValue() || ii == Operator.MUL.getValue() || ii == Operator.DIV.getValue() || ii== Operator.MOD.getValue() || ii== Operator.POW.getValue())) &&
+                        (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.SUB.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue() || iii == Operator.MOD.getValue() || iii == Operator.POW.getValue()))) {
+                    Constants.resS="The position of operators is wrong.";
+                    return false;
+                } else if ((ni.getType().equals("Operator") && ii == Operator.SQRT.getValue()) &&
+                        (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.SUB.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue() || iii == Operator.MOD.getValue() || iii == Operator.POW.getValue()))) {
                     Constants.resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Operator") && ii == Operator.LEFT_BRACE.getValue() &&
-                        (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue()))) {
+                        (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue() || iii == Operator.MOD.getValue() || iii == Operator.POW.getValue()))) {
                     Constants.resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Number") && nii.getType().equals("Operator") && iii == Operator.LEFT_BRACE.getValue()) {
                     Constants.resS="The position of operators is wrong.";
                     return false;
-                } else if (ni.getType().equals("Operator") && ii == Operator.RIGHT_BRACE.getValue() && ((nii.getType().equals("Operator") && iii == Operator.LEFT_BRACE.getValue()) || nii.getType().equals("Number"))) {
+                } else if (ni.getType().equals("Operator") && ii == Operator.RIGHT_BRACE.getValue() && ((nii.getType().equals("Operator") && (iii == Operator.LEFT_BRACE.getValue() || iii == Operator.SQRT.getValue() )) || nii.getType().equals("Number"))) {
                     Constants.resS="The position of operators is wrong.";
                     return false;
                 }

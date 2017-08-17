@@ -13,7 +13,11 @@ import android.widget.TextView;
 import static com.example.irisgyq.calculator.Constants.inputS;
 import static com.example.irisgyq.calculator.Constants.resS;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    Calculate cal = new Calculate();
+    InputProcess in = new InputProcess();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     public void addNumberOrOpe(View view) {
         setContentView(R.layout.content_main);
         TextView input = (TextView) findViewById(R.id.inputbox);
-
         switch(view.getId()){
             case R.id.leftBrace:
                 inputS += "(";
@@ -78,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.div:
                 inputS += "/";
+                break;
+            case R.id.pow:
+                inputS += "^";
                 break;
             case R.id.seven:
                 inputS += "7";
@@ -133,21 +139,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculate(View view){
         setContentView(R.layout.content_main);
-        Calculate cal = new Calculate();
-        InputProcess in = new InputProcess();
-
         if(in.inputValid(inputS)) {
             double resd = cal.calculate(cal.createTree(in.tokenize(inputS)));
             resS = String.valueOf(resd);
-            if(Constants.resS.equals("Infinity")) {
-                Constants.resS = "Divisor can't be zero.";
+            if(resS.equals("Infinity")) {
+                resS = "Divisor can't be zero.";
             }
         }
 
-        TextView res = (TextView) findViewById(R.id.resbox);
-        TextView input = (TextView) findViewById(R.id.inputbox);
-        input.setText(Constants.inputS);
-        res.setText(Constants.resS);
+        TextView inputt = (TextView) findViewById(R.id.inputbox);
+        TextView ress = (TextView) findViewById(R.id.resbox);
+        inputt.setText(inputS);
+        ress.setText(resS);
+
 
     }
 
