@@ -85,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.pow:
                 inputS += "^";
                 break;
+            case R.id.sqrt:
+                inputS += "√";
+                break;
+            case R.id.log2:
+                inputS += "log";
+                break;
+            case R.id.log10:
+                inputS += "lg";
+                break;
+            case R.id.ln:
+                inputS += "ln";
+                break;
             case R.id.seven:
                 inputS += "7";
                 break;
