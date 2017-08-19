@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import static com.example.irisgyq.calculator.Constants.inputS;
 import static com.example.irisgyq.calculator.Constants.resS;
+import static com.example.irisgyq.calculator.Constants.ansS;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -88,14 +89,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sqrt:
                 inputS += "√";
                 break;
-            case R.id.log2:
+            case R.id.log:
                 inputS += "log";
-                break;
-            case R.id.log10:
-                inputS += "lg";
-                break;
-            case R.id.ln:
-                inputS += "ln";
                 break;
             case R.id.seven:
                 inputS += "7";
@@ -133,6 +128,27 @@ public class MainActivity extends AppCompatActivity {
             case R.id.add:
                 inputS += "+";
                 break;
+            case R.id.comma:
+                inputS += ",";
+                break;
+            case R.id.e:
+                inputS += "e";
+                break;
+            case R.id.pi:
+                inputS += "π";
+                break;
+            case R.id.point:
+                inputS += ".";
+                break;
+            case R.id.cos:
+                inputS += "cos";
+                break;
+            case R.id.sin:
+                inputS += "sin";
+                break;
+            case R.id.tan:
+                inputS += "tan";
+                break;
             case R.id.zero:
                 Constants.inputS += "0";
                 break;
@@ -153,9 +169,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.content_main);
         if(in.inputValid(inputS)) {
             double resd = cal.calculate(cal.createTree(in.tokenize(inputS)));
-            resS = String.valueOf(resd);
-            if(resS.equals("Infinity")) {
-                resS = "Divisor can't be zero.";
+            if(resd!=(double)Integer.MIN_VALUE){
+                resS = String.valueOf(resd);
             }
         }
 
@@ -164,8 +179,18 @@ public class MainActivity extends AppCompatActivity {
         inputt.setText(inputS);
         ress.setText(resS);
 
+        ansS = resS;
+
 
     }
+
+    public void history(View view){
+        setContentView(R.layout.content_main);
+        TextView inputt = (TextView) findViewById(R.id.inputbox);
+        inputS = ansS;
+        inputt.setText(inputS);
+    }
+
 
 
 

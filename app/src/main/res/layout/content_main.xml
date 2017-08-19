@@ -45,49 +45,127 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button android:id="@+id/leftBrace"
-            android:layout_weight="1"
+        <Button
+            android:id="@+id/leftBrace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
             android:text="@string/leftBrace"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:textSize="20sp" />
 
-        <Button android:id="@+id/rightBrace"
-            android:layout_weight="1"
+        <Button
+            android:id="@+id/rightBrace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
             android:text="@string/rightBrace"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:textSize="20sp" />
 
-        <Button android:id="@+id/mod"
-            android:layout_weight="1"
+        <Button
+            android:id="@+id/add"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/mod"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
-
-        <Button android:id="@+id/div"
             android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/add"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/sub"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/sub"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/mul"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/mul"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/div"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
             android:text="@string/div"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:textSize="20sp" />
 
-        <Button android:id="@+id/pow"
-            android:layout_weight="1"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mod"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/mod"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/sqrt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/sqrt"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/pow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
             android:text="@string/pow"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/tan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/tan"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/cos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/cos"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/sin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/sin"
+            android:textSize="20sp" />
+
 
     </LinearLayout>
 
@@ -121,19 +199,27 @@
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/mul"
+        <Button android:id="@+id/log"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/mul"
+            android:text="@string/log"
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/sqrt"
+        <Button android:id="@+id/pi"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/sqrt"
+            android:text="@string/pi"
+            android:textSize="20sp"
+            android:onClick="addNumberOrOpe"/>
+
+        <Button android:id="@+id/e"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/e"
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
@@ -169,21 +255,22 @@
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/sub"
+        <Button android:id="@+id/delete"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/sub"
+            android:text="@string/delete"
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/log10"
-            android:layout_weight="1"
+        <Button android:id="@+id/ac"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/log10"
+            android:text="@string/ac"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="reset"/>
+
 
     </LinearLayout>
 
@@ -217,69 +304,61 @@
             android:textSize="20sp"
             android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/add"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/add"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
 
-        <Button android:id="@+id/log2"
-            android:layout_weight="1"
+        <Button android:id="@+id/ans"
+            android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/log2"
+            android:text="@string/ans"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="history"/>
+
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button android:id="@+id/zero"
-            android:layout_weight="1"
+        <Button
+            android:id="@+id/zero"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
             android:text="@string/zero"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:textSize="20sp" />
 
-        <Button android:id="@+id/delete"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/delete"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
-
-        <Button android:id="@+id/ac"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/ac"
-            android:textSize="20sp"
-            android:onClick="reset"/>
-
-        <Button android:id="@+id/equals"
+        <Button
+            android:id="@+id/point"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/point"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/comma"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="addNumberOrOpe"
+            android:text="@string/comma"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/equals"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:onClick="calculate"
             android:text="@string/equals"
-            android:textSize="20sp"
-            android:onClick="calculate"/>
+            android:textSize="20sp" />
 
-        <Button android:id="@+id/ln"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="@string/ln"
-            android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
 
     </LinearLayout>
 
