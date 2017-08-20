@@ -22,7 +22,6 @@
         android:gravity="right"
         android:layout_marginRight="10dp"
         android:hint="@string/defaultInput" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -39,8 +38,6 @@
             android:gravity="right"
             android:layout_marginRight="10dp"
             android:hint="@string/defaultRes"/>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/leftBrace"
             android:textSize="20sp" />
 
@@ -63,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/rightBrace"
             android:textSize="20sp" />
 
@@ -72,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/add"
             android:textSize="20sp" />
 
@@ -81,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/sub"
             android:textSize="20sp" />
 
@@ -90,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/mul"
             android:textSize="20sp" />
 
@@ -99,11 +96,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/div"
             android:textSize="20sp" />
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/mod"
             android:textSize="20sp" />
 
@@ -126,7 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/sqrt"
             android:textSize="20sp" />
 
@@ -135,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/pow"
             android:textSize="20sp" />
 
@@ -144,7 +139,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/tan"
             android:textSize="20sp" />
 
@@ -153,7 +148,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/cos"
             android:textSize="20sp" />
 
@@ -162,11 +157,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/sin"
             android:textSize="20sp" />
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -181,7 +174,7 @@
             android:layout_height="match_parent"
             android:text="@string/seven"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/eight"
             android:layout_weight="1"
@@ -189,7 +182,7 @@
             android:layout_height="match_parent"
             android:text="@string/eight"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/nine"
             android:layout_weight="1"
@@ -197,7 +190,7 @@
             android:layout_height="match_parent"
             android:text="@string/nine"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/log"
             android:layout_width="0dp"
@@ -205,7 +198,7 @@
             android:layout_weight="1"
             android:text="@string/log"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/pi"
             android:layout_weight="1"
@@ -213,7 +206,7 @@
             android:layout_height="match_parent"
             android:text="@string/pi"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/e"
             android:layout_weight="1"
@@ -221,8 +214,7 @@
             android:layout_height="match_parent"
             android:text="@string/e"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
-
+            android:onClick="operate"/>
     </LinearLayout>
 
     <LinearLayout
@@ -237,7 +229,7 @@
             android:layout_height="match_parent"
             android:text="@string/four"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/five"
             android:layout_weight="1"
@@ -245,7 +237,7 @@
             android:layout_height="match_parent"
             android:text="@string/five"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/six"
             android:layout_weight="1"
@@ -253,7 +245,7 @@
             android:layout_height="match_parent"
             android:text="@string/six"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/delete"
             android:layout_weight="1"
@@ -261,7 +253,7 @@
             android:layout_height="match_parent"
             android:text="@string/delete"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/ac"
             android:layout_weight="2"
@@ -269,9 +261,7 @@
             android:layout_height="match_parent"
             android:text="@string/ac"
             android:textSize="20sp"
-            android:onClick="reset"/>
-
-
+            android:onClick="operate"/>
     </LinearLayout>
 
     <LinearLayout
@@ -286,7 +276,7 @@
             android:layout_height="match_parent"
             android:text="@string/one"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/two"
             android:layout_weight="1"
@@ -294,7 +284,7 @@
             android:layout_height="match_parent"
             android:text="@string/two"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
+            android:onClick="operate"/>
 
         <Button android:id="@+id/three"
             android:layout_weight="1"
@@ -302,8 +292,7 @@
             android:layout_height="match_parent"
             android:text="@string/three"
             android:textSize="20sp"
-            android:onClick="addNumberOrOpe"/>
-
+            android:onClick="operate"/>
 
         <Button android:id="@+id/ans"
             android:layout_weight="3"
@@ -311,11 +300,8 @@
             android:layout_height="match_parent"
             android:text="@string/ans"
             android:textSize="20sp"
-            android:onClick="history"/>
-
-
+            android:onClick="operate"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -328,7 +314,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/zero"
             android:textSize="20sp" />
 
@@ -337,7 +323,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/point"
             android:textSize="20sp" />
 
@@ -346,7 +332,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addNumberOrOpe"
+            android:onClick="operate"
             android:text="@string/comma"
             android:textSize="20sp" />
 
@@ -355,12 +341,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:onClick="calculate"
+            android:onClick="operate"
             android:text="@string/equals"
             android:textSize="20sp" />
-
-
     </LinearLayout>
-
 </LinearLayout>
-

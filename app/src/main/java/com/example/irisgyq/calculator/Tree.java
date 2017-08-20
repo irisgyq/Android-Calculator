@@ -8,10 +8,6 @@ public class Tree<T> {
         root = null;
     }
 
-    public boolean isEmpty() {
-        return root == null;
-    }
-
     public T getRoot() {
         return this.root;
     }
@@ -19,5 +15,4 @@ public class Tree<T> {
     public void setRoot(T node) {
         root = node;
     }
-
 }

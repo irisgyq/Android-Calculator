@@ -6,13 +6,6 @@ public class Node {
     private Node left;
     private Node right;
 
-    public Node() {
-        this.value = 0;
-        this.type = "";
-        this.left = null;
-        this.right = null;
-    }
-
     public Node(double value, String type) {
         this.value = value;
         this.type = type;
@@ -25,14 +18,6 @@ public class Node {
     }
 
     public String getType() { return type;}
-
-    public Node(double value, String type, Node left, Node right) {
-        super();
-        this.value = value;
-        this.type = type;
-        this.left = left;
-        this.right = right;
-    }
 
     public Node getLeft() {
         return left;

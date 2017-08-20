@@ -10,10 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import static com.example.irisgyq.calculator.Constants.ansS;
 import static com.example.irisgyq.calculator.Constants.inputS;
 import static com.example.irisgyq.calculator.Constants.resS;
-import static com.example.irisgyq.calculator.Constants.ansS;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,21 +54,13 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void reset(View view){
-        setContentView(R.layout.content_main);
-        TextView input=(TextView)findViewById(R.id.inputbox);
-        input.setText(R.string.reset);
-        inputS = "";
-    }
-
-
-    public void addNumberOrOpe(View view) {
+    public void operate(View view) {
         setContentView(R.layout.content_main);
         TextView input = (TextView) findViewById(R.id.inputbox);
+        TextView ress = (TextView) findViewById(R.id.resbox);
         switch(view.getId()){
             case R.id.leftBrace:
                 inputS += "(";
@@ -150,52 +141,37 @@ public class MainActivity extends AppCompatActivity {
                 inputS += "tan";
                 break;
             case R.id.zero:
-                Constants.inputS += "0";
+                inputS += "0";
+                break;
+            case R.id.ac:
+                inputS = "Begin Calculating……";
+                break;
+            case R.id.ans:
+                inputS = ansS;
                 break;
             case R.id.delete:
-                if(Constants.inputS==null){
-                    Constants.inputS = "";
+                if(inputS==null){
+                    inputS = "";
                 } else{
-                    Constants.inputS = Constants.inputS.substring(0,inputS.length()-1);
+                    inputS = inputS.substring(0,inputS.length()-1);
                 }
+                resS = "";
+                break;
+            case R.id.equals:
+                if(in.inputValid(inputS)) {
+                    double resd = cal.calculate(cal.createTree(in.tokenize(inputS)));
+                    if(resd!=(double)Integer.MIN_VALUE) resS = String.valueOf(resd);
+                    if(resS.equals("Infinity")) resS = "Divisor can't be zero.";
+                }
+                ansS = resS;
+                ress.setText(resS);
                 break;
             default:
                 break;
         }
-        input.setText(Constants.inputS);
-    }
-
-    public void calculate(View view){
-        setContentView(R.layout.content_main);
-        if(in.inputValid(inputS)) {
-            double resd = cal.calculate(cal.createTree(in.tokenize(inputS)));
-            if(resd!=(double)Integer.MIN_VALUE){
-                resS = String.valueOf(resd);
-            }
+        input.setText(inputS);
+        if(inputS.equals("Begin Calculating……")){
+            inputS = "";
         }
-
-        TextView inputt = (TextView) findViewById(R.id.inputbox);
-        TextView ress = (TextView) findViewById(R.id.resbox);
-        inputt.setText(inputS);
-        ress.setText(resS);
-
-        ansS = resS;
-
-
     }
-
-    public void history(View view){
-        setContentView(R.layout.content_main);
-        TextView inputt = (TextView) findViewById(R.id.inputbox);
-        inputS = ansS;
-        inputt.setText(inputS);
-    }
-
-
-
-
-
-
-
-
 }

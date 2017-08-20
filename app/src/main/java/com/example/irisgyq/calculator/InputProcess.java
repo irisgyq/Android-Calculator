@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import static com.example.irisgyq.calculator.Constants.resS;
 
 public class InputProcess {
 
@@ -14,8 +15,6 @@ public class InputProcess {
 
             ArrayList<Token> arr = new ArrayList<Token>();
             StringBuffer num = new StringBuffer();
-
-            s = s.replace(" ", "");
 
             if (s.charAt(0) == '-') {
                 arr.add(new Token(0,"Number"));
@@ -38,27 +37,26 @@ public class InputProcess {
                             || s.charAt(i)=='^' || s.charAt(i)=='(' || s.charAt(i)==')'){
                         ic = (int) s.charAt(i);
                     } else if(s.charAt(i)=='√') {
-                        ic = 128;
+                        ic = Operator.SQRT.getValue();
                     } else if(s.charAt(i)=='π') {
-                        ic = 129;
+                        ic = Operator.PI.getValue();
                     } else if(s.charAt(i)=='e'){
-                        ic = 131;
+                        ic = Operator.E.getValue();
                     } else if(s.charAt(i)=='l' && i!=s.length()-2 && s.charAt(i+1)=='o' && s.charAt(i+2)=='g'){
-                        ic = 130;
+                        ic = Operator.LOG.getValue();
                         i = i+2;
                     } else if(s.charAt(i)=='c' && s.charAt(i+1)=='o' && i!=s.length()-2 && s.charAt(i+2)=='s'){
-                        ic = 132;
+                        ic = Operator.COS.getValue();
                         i = i+2;
                     } else if(s.charAt(i)=='s' && s.charAt(i+1)=='i' && i!=s.length()-2 && s.charAt(i+2)=='n'){
-                        ic = 133;
+                        ic = Operator.SIN.getValue();
                         i = i+2;
                     } else if(s.charAt(i)=='t' && s.charAt(i+1)=='a' && i!=s.length()-2 && s.charAt(i+2)=='n'){
-                        ic = 134;
+                        ic = Operator.TAN.getValue();
                         i = i+2;
                     } else if(s.charAt(i) == ',') {
-                        ic = 135;
+                        ic = Operator.COMMA.getValue();
                     }
-
                     if (s.charAt(i) == ' ') {
                         break;
                     } else if (ic == Operator.LEFT_BRACE.getValue()) {
@@ -95,19 +93,13 @@ public class InputProcess {
             if (s.length() == 0) {
                 return false;
             }
-            //check whether there are spaces between digits
-            for (int ii = 0; ii < s.length() - 1; ii++) {
-                if (Character.isDigit(s.charAt(ii)) && s.charAt(ii + 1) == ' ') {
-                    for (int jj = ii + 1; jj < s.length(); jj++) {
-                        char cjj = s.charAt(jj);
-                        if (cjj == ' ') {
-                            continue;
-                        } else if (Character.isDigit(cjj)) {
-                            Constants.resS="You can't input space between digits.";
-                            return false;
-                        } else {
-                            jj = s.length();
-                        }
+
+            //check whether there are wrong commas
+            for (int ii = 1; ii < s.length() - 1; ii++) {
+                if (s.charAt(ii) == ',') {
+                    if(!s.contains("log")) {
+                        resS = "There are wrong commas";
+                        return false;
                     }
                 }
             }
@@ -117,10 +109,10 @@ public class InputProcess {
             for (int ii = 1; ii < s.length() - 1; ii++) {
                 if (s.charAt(ii) == '.') {
                     if (!Character.isDigit(s.charAt(ii - 1))) {
-                        Constants.resS="These are wrong points.";
+                        resS="These are wrong points.";
                         return false;
                     } else if (!Character.isDigit(s.charAt(ii + 1))) {
-                        Constants.resS="These are wrong points.";
+                        resS="These are wrong points.";
                         return false;
                     } else {
                         for (int jj = ii + 2; jj < s.length(); jj++) {
@@ -128,7 +120,7 @@ public class InputProcess {
                                 String ss = s.substring(ii + 2, jj);
                                 if (!(ss.contains("+") || ss.contains("-") || ss.contains("*") || ss.contains("/") || ss.contains("%")
                                         || ss.contains("^") || ss.contains(")"))) {
-                                    Constants.resS="These are wrong points.";
+                                    resS="These are wrong points.";
                                     return false;
                                 }
                             }
@@ -136,15 +128,12 @@ public class InputProcess {
                     }
                 }
             }
-
             ArrayList<Token> operation = tokenize(s);
-            return isNumberOrOpe(operation) && isOpePosRight(operation) && isDivisorZero(operation) && isValidTan(operation) && isLogWrong(operation) && isValidparentheses(operation);
+            return isNumberOrOpe(operation) && isOpePosRight(operation) && isValidparentheses(operation) && isValidTan(operation) && isLogWrong(operation);
         }
 
         private boolean isNumberOrOpe(ArrayList<Token> ac) {
-            if(ac.contains(null)){
-                Constants.resS="Your input contains other characters.";
-            }
+            if(ac.contains(null)) resS="Your input contains other characters.";
             return !ac.contains(null);
         }
 
@@ -154,7 +143,7 @@ public class InputProcess {
             Token tn = ac.get(ac.size() - 1);
             double in = tn.getValue();
             if (!((t0.getType().equals("Number") || (t0.getType().equals("Operator") && (i0 == Operator.LEFT_BRACE.getValue() || i0 == Operator.SUB.getValue() || i0 == Operator.COS.getValue() || i0 == Operator.SIN.getValue() || i0 == Operator.TAN.getValue() || i0 == Operator.LOG.getValue() || i0==Operator.SQRT.getValue())))) || (!(tn.getType().equals("Number") || (tn.getType().equals("Operator") && in == Operator.RIGHT_BRACE.getValue())))) {
-                Constants.resS="The position of operators is wrong.";
+                resS="The position of operators is wrong.";
                 return false;
             }
             for (int i = 0; i < ac.size() - 1; i++) {
@@ -164,49 +153,34 @@ public class InputProcess {
                 double iii = nii.getValue();
                 if ((ni.getType().equals("Operator") && (ii == Operator.ADD.getValue() || ii == Operator.SUB.getValue() || ii == Operator.MUL.getValue() || ii == Operator.DIV.getValue() || ii == Operator.MOD.getValue() || ii == Operator.POW.getValue() || ii == Operator.COMMA.getValue())) &&
                         (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.SUB.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.RIGHT_BRACE.getValue() || iii == Operator.MOD.getValue() || iii == Operator.POW.getValue() || iii == Operator.COMMA.getValue()))) {
-                    Constants.resS="The position of operators is wrong.";
+                    resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Operator") && ii == Operator.LEFT_BRACE.getValue() &&
                         (nii.getType().equals("Operator") && (iii == Operator.ADD.getValue() || iii == Operator.MUL.getValue() || iii == Operator.DIV.getValue() || iii == Operator.MOD.getValue() || iii == Operator.POW.getValue() || iii == Operator.RIGHT_BRACE.getValue()))) {
-                    Constants.resS="The position of operators is wrong.";
+                    resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Number") && nii.getType().equals("Operator") && (iii == Operator.LEFT_BRACE.getValue() || iii == Operator.LOG.getValue()  || iii == Operator.SQRT.getValue() || iii == Operator.COS.getValue() || iii == Operator.SIN.getValue() || iii == Operator.TAN.getValue() )) {
-                    Constants.resS="The position of operators is wrong.";
+                    resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Operator") && ii == Operator.RIGHT_BRACE.getValue() && ((nii.getType().equals("Operator") && (iii == Operator.LEFT_BRACE.getValue() || iii == Operator.SQRT.getValue() || iii == Operator.COS.getValue() || iii == Operator.SIN.getValue() || iii == Operator.TAN.getValue() || iii == Operator.LOG.getValue()  || nii.getType().equals("Number"))))) {
-                    Constants.resS="The position of operators is wrong.";
+                    resS="The position of operators is wrong.";
                     return false;
                 } else if (ni.getType().equals("Operator") && ii == Operator.LOG.getValue() && !(nii.getType().equals("Operator") && iii==Operator.LEFT_BRACE.getValue())){
-                    Constants.resS="The position of operators is wrong.";
+                    resS="The position of operators is wrong.";
                     return false;
                 }
             }
             return true;
         }
 
-        private boolean isDivisorZero(ArrayList<Token> ac) {
-            for (int i = 0; i < ac.size(); i++) {
-                Token t = ac.get(i);
-                if (t.getType().equals("Operator") && t.getValue() == Operator.DIV.getValue()) {
-                    Token tn = ac.get(i + 1);
-                    if (tn.getType().equals("Number") && tn.getValue() == 0) {
-                        Constants.resS="Divisor can't be zero.";
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-    public boolean isValidTan(ArrayList<Token> ac){
+    private boolean isValidTan(ArrayList<Token> ac){
         for(int i=0;i<ac.size();i++){
-            Token t = ac.get(i);
-            if(t.getType().equals("Operator") && t.getValue()==Operator.TAN.getValue()){
+            if(ac.get(i).getType().equals("Operator") && ac.get(i).getValue()==Operator.TAN.getValue()){
                 if(i!=ac.size()-1){
                     double d = (ac.get(i+1).getValue()-(Math.PI/2))/Math.PI;
                     int dd = (int)((ac.get(i+1).getValue()-(Math.PI/2))/Math.PI);
                     if(d-dd==0.0) {
-                        Constants.resS="Your tan is wrong.";
+                        resS="Your tan is wrong.";
                         return false;
                     }
                 }
@@ -217,38 +191,47 @@ public class InputProcess {
 
     private boolean isLogWrong(ArrayList<Token> ac) {
         for(int i=0;i<ac.size();i++) {
-            Token t = ac.get(i);
             int flag1 = 1;
             List<Token> aaaa = new ArrayList<>();
-            if (t.getType().equals("Operator") && t.getValue() == Operator.LOG.getValue()) {
+            List<Token> bbbb = new ArrayList<>();
+            List<Token> cccc = new ArrayList<>();
+            if (ac.get(i).getType().equals("Operator") && ac.get(i).getValue() == Operator.LOG.getValue()) {
                 for (int j = i + 2; j < ac.size(); j++) {
-                    if (ac.get(j).getType().equals("Operator") && ac.get(j).getValue() == Operator.LEFT_BRACE.getValue()) {
-                        flag1++;
-                    } else if (ac.get(j).getType().equals("Operator") && ac.get(j).getValue() == Operator.RIGHT_BRACE.getValue()) {
+                    if (ac.get(j).getType().equals("Operator") && ac.get(j).getValue() == Operator.LEFT_BRACE.getValue()) flag1++;
+                    else if (ac.get(j).getType().equals("Operator") && ac.get(j).getValue() == Operator.RIGHT_BRACE.getValue()) {
                         flag1--;
                         if (flag1 == 0) {
                             aaaa = ac.subList(i + 2, j);
+                            bbbb = ac.subList(0,i);
+                            cccc = ac.subList(j+1,ac.size());
                             j = ac.size();
                         }
                     }
                 }
-                int count=0;
+                int count=0, count1=0, count2=0;
                 for (int k = 0; k < aaaa.size(); k++) {
-                    if(aaaa.get(k).getType().equals("Operator") && aaaa.get(k).getValue()==135) {
-                        count++;
-                    }
+                    if(aaaa.get(k).getType().equals("Operator") && aaaa.get(k).getValue()==135) count++;
+                }
+                for (int k = 0; k < bbbb.size(); k++) {
+                    if(bbbb.get(k).getType().equals("Operator") && bbbb.get(k).getValue()==135) count1++;
+                }
+                for (int k = 0; k < cccc.size(); k++) {
+                    if(cccc.get(k).getType().equals("Operator") && cccc.get(k).getValue()==135) count2++;
                 }
                 if(count==0 || count>1) {
-                    Constants.resS="Your log is wrong.";
+                    resS="Your log is wrong.";
+                    return false;
+                }
+                if(count1!=0 || count2!=0){
+                    resS = "There are wrong commas";
                     return false;
                 }
             }
-
         }
         return true;
     }
 
-        private boolean isValidparentheses(ArrayList<Token> ac) {
+    private boolean isValidparentheses(ArrayList<Token> ac) {
             Stack<Token> parStk = new Stack<Token>();
             for (int i = 0; i < ac.size(); i++) {
                 Token t = ac.get(i);
@@ -256,14 +239,12 @@ public class InputProcess {
                     parStk.push(new Token(Operator.RIGHT_BRACE.getValue(),"Operator"));
                 } else if (t.getType().equals("Operator") && t.getValue() == Operator.RIGHT_BRACE.getValue()) {
                     if (parStk.empty() || t.getValue() != (parStk.pop().getValue())) {
-                        Constants.resS="parentheses are wrong.";
+                        resS="parentheses are wrong.";
                         return false;
                     }
                 }
             }
-            if (!parStk.isEmpty()) {
-                Constants.resS="parentheses are wrong.";
-            }
+            if (!parStk.isEmpty()) resS="parentheses are wrong.";
             return parStk.isEmpty();
         }
 }
