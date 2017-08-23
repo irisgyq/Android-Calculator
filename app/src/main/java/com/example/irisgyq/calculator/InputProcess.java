@@ -13,7 +13,7 @@ public class InputProcess {
                 return null;
             }
 
-            ArrayList<Token> arr = new ArrayList<Token>();
+            ArrayList<Token> arr = new ArrayList<>();
             StringBuffer num = new StringBuffer();
 
             if (s.charAt(0) == '-') {
@@ -232,7 +232,7 @@ public class InputProcess {
     }
 
     private boolean isValidparentheses(ArrayList<Token> ac) {
-            Stack<Token> parStk = new Stack<Token>();
+            Stack<Token> parStk = new Stack<>();
             for (int i = 0; i < ac.size(); i++) {
                 Token t = ac.get(i);
                 if (t.getType().equals("Operator") && t.getValue() == Operator.LEFT_BRACE.getValue()) {

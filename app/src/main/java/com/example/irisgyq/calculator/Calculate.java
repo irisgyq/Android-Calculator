@@ -13,7 +13,7 @@ public class Calculate {
 
     public Tree<Node> createTree(List<Token> ar) {
         Tree<Node> t = new Tree<>();
-        Node sub=null, n3=null;
+        Node sub, n3=null;
         int flag = 0, pos1 = 0, pos2 = 0;
         for (int i = 0; i < ar.size(); i = i + 2) {
             if (ar.get(i).getType().equals("Operator") && ar.get(i).getValue() == Operator.LEFT_BRACE.getValue()) {
@@ -48,7 +48,6 @@ public class Calculate {
                                             n2.setLeft(t.getRoot());
                                             t.setRoot(n2);
                                         }
-                                        t.setRoot(n2);
                                     } else {
                                         n2.setLeft(sub);
                                         n1.setRight(n2);
@@ -70,7 +69,7 @@ public class Calculate {
                 if (type.equals("Operator")) {
                     if (val == Operator.SQRT.getValue() || val == Operator.COS.getValue() || val == Operator.SIN.getValue() || val == Operator.TAN.getValue()) {
                         if (ar.get(i + 1).getType().equals("Operator")) {
-                            int pos3 = 0, pos4 = 0, flag1 = 0;
+                            int pos3 = 0, pos4, flag1 = 0;
                             for (int k = i + 1; k < ar.size(); k++) {
                                 if (ar.get(k).getType().equals("Operator") && ar.get(k).getValue() == Operator.LEFT_BRACE.getValue()) {
                                     flag1++;
@@ -118,7 +117,7 @@ public class Calculate {
                             n4 = new Node(ar.get(i).getValue(), ar.get(i).getType());
                         }
                     } else if (val == Operator.LOG.getValue()) {
-                        int pos5 = i + 1, pos6 = 0, flag2 = 1;
+                        int pos5 = i + 1, pos6, flag2 = 1;
                         for (int k = i + 2; k < ar.size(); k++) {
                             if (ar.get(k).getType().equals("Operator") && ar.get(k).getValue() == Operator.LEFT_BRACE.getValue()) {
                                 flag2++;
@@ -168,7 +167,7 @@ public class Calculate {
                 } else {
                     Node n5 = new Node(ar.get(i + 1).getValue(), ar.get(i + 1).getType());
                     if (n5.getType().equals("Operator") && n4.getType().equals("Number")) n5.setLeft(n4);
-                    if (n5.getType().equals("Operator") && i == 0) t.setRoot(n5);
+                    if (n5.getType().equals("Operator") && t.getRoot() == null) t.setRoot(n5);
                     else if (i >= 2 && compareOpe(ar.get(i + 1), ar.get(i - 1))) n3.setRight(n5);
                     else {
                         Node n6 = t.getRoot();
@@ -226,7 +225,7 @@ public class Calculate {
         Stack<Double> val = new Stack<>();
         while (!q.isEmpty()) {
             Node n = q.peek();
-            if (n.getType().equals("Number")) val.push((double) q.poll().getValue());
+            if (n.getType().equals("Number")) val.push(q.poll().getValue());
             else if (n.getType().equals("Operator") && n.getValue() == Operator.ADD.getValue()) {
                 num1 = val.pop();
                 num2 = val.pop();

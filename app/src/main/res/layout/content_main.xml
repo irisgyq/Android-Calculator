@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:textSize="30sp"
             android:ellipsize="marquee"
-            android:gravity="right"
+            android:gravity="end"
             android:layout_marginRight="10dp"
             android:hint="@string/defaultRes"/>
     </LinearLayout>
